@@ -6,6 +6,7 @@ App = Ember.Application.create({
 App.Router.map(function() {
   this.route('product', { path: '/products/:product_id' });
   this.route('addProduct', { path: '/addProduct' });
+  this.route('editProduct', { path: '/editProduct/:product_id' });
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -25,6 +26,17 @@ App.AddProductController = Ember.ObjectController.extend({
       });
       controller = this;
       newProduct.save().then(function(){
+        controller.transitionToRoute('index')
+      });
+    }
+  }
+});
+
+App.EditProductController = Ember.ObjectController.extend({
+  actions: {
+    saveProduct: function() {
+      var controller = this;
+      this.get('model').save().then(function(){
         controller.transitionToRoute('index')
       });
     }

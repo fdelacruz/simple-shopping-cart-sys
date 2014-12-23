@@ -18,7 +18,10 @@
     <script type="text/x-handlebars" data-template-name="index">
       <ul>
       {{#each product in model}}
-        <li>{{#link-to 'product' product}}{{product.name}}{{/link-to}}</li>
+        <li>
+        {{#link-to 'product' product}}{{product.name}}{{/link-to}}
+        {{#link-to 'editProduct' product}}Edit{{/link-to}}
+        </li>
       {{/each}}
       </ul>
     </script>
@@ -30,11 +33,19 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="addProduct">
-      <form {{action saveProduct on="submit"}}>
+      <form {{action 'saveProduct' on="submit"}}>
         <p>Title: {{input value=name}}</p>
         <p>Description {{input value=description}}</p>
         <p>Price: {{input value=price}}</p>
         <p><input type="submit" value="Add product"/></p>
+      </form>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="editProduct">
+      <form {{action 'saveProduct' on="submit"}}>
+        <p>Title: {{input value=name}}</p> <p>Description {{input value=description}}</p>
+        <p>Price: {{input value=price}}</p>
+        <p><input type="submit" value="Update product"/></p>
       </form>
     </script>
 
