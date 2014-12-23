@@ -4,9 +4,15 @@ App = Ember.Application.create({
 });
 
 App.Router.map(function() {
-  // put your routes here
+  this.route('product', { path: '/products/:product_id' });
 });
 
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('product');
+  }
+});
+ 
 App.Product = DS.Model.extend({
   name: DS.attr(),
   description: DS.attr(),
@@ -29,9 +35,3 @@ App.Product.FIXTURES = [
     price: 180
   }
 ];
-
-App.IndexRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.find('product');
-  }
-});
