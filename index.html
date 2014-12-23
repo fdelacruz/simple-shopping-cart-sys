@@ -10,6 +10,7 @@
     <script type="text/x-handlebars">
       <h2>Welcome to Ember.js Shopping site</h2>
       <p>{{#link-to 'index' }}Products{{/link-to}}</p>
+      <p>{{#link-to 'addProduct' }}Add product{{/link-to}}</p>
 
       {{outlet}}
     </script>
@@ -26,6 +27,15 @@
       <p>Title: {{name}}</p>
       <p>Description: {{description}}</p>
       <p>Price: £{{price}}</p>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="addProduct">
+      <form {{action saveProduct on="submit"}}>
+        <p>Title: {{input value=name}}</p>
+        <p>Description {{input value=description}}</p>
+        <p>Price: {{input value=price}}</p>
+        <p><input type="submit" value="Add product"/></p>
+      </form>
     </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>

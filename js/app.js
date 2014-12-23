@@ -5,11 +5,29 @@ App = Ember.Application.create({
 
 App.Router.map(function() {
   this.route('product', { path: '/products/:product_id' });
+  this.route('addProduct', { path: '/addProduct' });
 });
 
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('product');
+  }
+});
+
+App.AddProductController = Ember.ObjectController.extend({
+  model: {},
+  actions: {
+    saveProduct: function() {
+      var newProduct = this.store.createRecord('product', {
+        name: this.get('name'),
+        description: this.get('description'),
+        price: this.get('price')
+      });
+      controller = this;
+      newProduct.save().then(function(){
+        controller.transitionToRoute('index')
+      });
+    }
   }
 });
  
