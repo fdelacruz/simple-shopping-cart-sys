@@ -21,6 +21,7 @@
         <li>
         {{#link-to 'product' product}}{{product.name}}{{/link-to}}
         {{#link-to 'editProduct' product}}Edit{{/link-to}}
+        <a href="#" {{action 'deleteProduct' product}}>Delete</a>
         </li>
       {{/each}}
       </ul>

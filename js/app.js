@@ -15,6 +15,16 @@ App.IndexRoute = Ember.Route.extend({
   }
 });
 
+App.IndexController = Ember.ArrayController.extend({
+  actions: {
+    deleteProduct: function(product){
+      if(confirm('Are you sure you want to delete this product')){
+        product.destroyRecord();
+      }
+    }
+  }
+});
+
 App.AddProductController = Ember.ObjectController.extend({
   model: {},
   actions: {
