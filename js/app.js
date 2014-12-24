@@ -56,22 +56,53 @@ App.EditProductController = Ember.ObjectController.extend({
 App.Product = DS.Model.extend({
   name: DS.attr(),
   description: DS.attr(),
-  price: DS.attr()
+  price: DS.attr(),
+  reviews: DS.hasMany('review', {async: true})
+});
+
+App.Review = DS.Model.extend({
+  text: DS.attr(),
+  rating: DS.attr(),
+  product: DS.belongsTo('product', {async: true})
 });
 
 App.ProductAdapter = DS.FixtureAdapter.extend();
+App.ReviewAdapter = DS.FixtureAdapter.extend();
 
 App.Product.FIXTURES = [
   {
     id: 1,
     name: 'Playstation 3',
     description: 'Last Gen console with the best exclusives',
-    price: 200
+    price: 200,
+    reviews: [2, 3]
   },
   {
     id: 2,
     name: 'Xbox 360',
     description: 'Last Gen console with the best addons like Kinnect',
-    price: 180
+    price: 180,
+    reviews: [1]
+  }
+];
+
+App.Review.FIXTURES = [
+  {
+    id: 1,
+    text: 'I like this Xbox console',
+    rating: 4,
+    product: 2
+  },
+  {
+    id: 2,
+    text: 'I like this PS3 console',
+    rating: 4,
+    product: 1
+  },
+  {
+    id: 3,
+    text: 'PS3 is the best',
+    rating: 5,
+    product: 1
   }
 ];

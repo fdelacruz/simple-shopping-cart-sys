@@ -31,6 +31,14 @@
       <p>Title: {{name}}</p>
       <p>Description: {{description}}</p>
       <p>Price: £{{price}}</p>
+      <hr />
+      <div>
+      <h3>Reviews</h3>
+        {{#each review in reviews}}
+        <p>Text: {{review.text}}</p>
+        <p>Rating: {{review.rating}}</p>
+        {{/each}}
+      </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="addProduct">
